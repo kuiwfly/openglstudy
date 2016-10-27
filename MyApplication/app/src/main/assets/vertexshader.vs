@@ -4,4 +4,4 @@ varying vec2 vTexPosition;
 void main() {
   gl_Position = aPosition;
   vTexPosition = aTexPosition;
-};
+}

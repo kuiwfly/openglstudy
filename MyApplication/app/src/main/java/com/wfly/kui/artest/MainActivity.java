@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.opengl.GLSurfaceView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
@@ -18,19 +20,18 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        glSurfaceView=new GLSurfaceView(this  );
-        glRender=new EffectRender();
+        /*set full screen window*/
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        /*hide title*/
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+        glSurfaceView=new GLSurfaceView(this  );
         setContentView(glSurfaceView);
         glSurfaceView.setEGLContextClientVersion(2);
+        glRender=new EffectRender(this);
         glSurfaceView.setRenderer(glRender);
         glSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
 
-        /*
-        setContentView(R.layout.activity_main);
-        // Example of a call to a native method
-        TextView tv = (TextView) findViewById(R.id.sample_text);
-        tv.setText(stringFromJNI());*/
     }
 
     /**
